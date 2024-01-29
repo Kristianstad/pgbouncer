@@ -23,4 +23,4 @@ Secure and Minimal Pgbouncer Docker-image. Listens by default on port 6432.
 * VAR_ENCRYPT_PW: Set to "yes" to hash passwords with Argon2.
 
 ## Capabilities
-Can drop all but SETPCAP, SETGID and SETUID.
+Can drop all but CHOWN, SETPCAP, SETGID and SETUID.
