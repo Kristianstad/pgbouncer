@@ -41,8 +41,8 @@ ENV VAR_LINUX_USER="postgres" \
     VAR_param_auth_hba_file="$CONFIG_DIR/pg_hba.conf" \
     VAR_param_unix_socket_dir="/run/pgbouncer" \
     VAR_param_listen_addr="*" \
-    VAR_param_logfile="/var/log/pgbouncer/pgbouncer.log" \
-    VAR_FINAL_COMMAND="/usr/local/bin/pgbouncer \$VAR_CONFIG_FILE"
+    VAR_param_logfile="/dev/stdout" \
+    VAR_FINAL_COMMAND="/usr/local/bin/pgbouncer -q \$VAR_CONFIG_FILE"
 
 # Generic template (don't edit) <BEGIN>
 USER starter
