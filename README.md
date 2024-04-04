@@ -1,6 +1,8 @@
 # sam-pgbouncer
 Secure and Minimal Pgbouncer Docker-image. Listens by default on port 6432.
 
+NOTE! With default settings the docker logs can grow very large.
+
 ## Environment variables
 ### pre-set runtime variables
 * VAR_LINUX_USER (postgres)
