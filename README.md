@@ -7,12 +7,13 @@ Secure and Minimal Pgbouncer Docker-image. Listens by default on port 6432.
 * VAR_CONFIG_FILE (/etc/pgbouncer/pgbouncer.ini)
 * VAR_ARGON2_PARAMS (-r): Only used if VAR_ENCRYPT_PW is set to "yes".
 * VAR_SALT_FILE (/proc/sys/kernel/hostname): Only used if VAR_ENCRYPT_PW is set to "yes".
-* VAR_FINAL_COMMAND (/usr/local/bin/pgbouncer \$VAR_CONFIG_FILE)
+* VAR_FINAL_COMMAND (/usr/local/bin/pgbouncer -q \$VAR_CONFIG_FILE)
 * VAR_DATABASES (*=port=5432): Comma separated list of backend databases. Default set to only read from Unix socket.
 * VAR_param_auth_file (/etc/pgbouncer/userlist.txt): Pgbouncer authentication file.
 * VAR_param_auth_hba_file (/etc/pgbouncer/pg_hba.conf): Pgbouncer hba authentication file.
 * VAR_param_unix_socket_dir (/run/pgbouncer): Pgbouncer Unix socket dir, used by both frontend and backend.
 * VAR_param_listen_addr (*): Allowed client network addresses. Default set to allow all.
+* VAR_param_logfile (/dev/stdout)
 
 ### Other runtime variables
 * VAR_DATABASE_USERS: Comma separated list of database users.
