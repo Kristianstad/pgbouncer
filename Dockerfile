@@ -3,7 +3,7 @@
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
-ARG ALPINE_VERSION=${ALPINE_VERSION:-3.20}
+ARG ALPINE_VERSION=${ALPINE_VERSION:-3.21}
 ARG IMAGETYPE="application"
 ARG RUNDEPS="pgbouncer"
 ARG EXECUTABLES="/usr/bin/pgbouncer"
