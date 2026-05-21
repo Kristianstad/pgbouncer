@@ -10,9 +10,14 @@ on:
       app_version:
         description: 'Application version (e.g. 1.25.1)'
         required: false
+      image_name:
+        description: 'Image name (e.g. pgbouncer)'
+        required: true
+        default: 'pgbouncer'
 
 env:
   REGISTRY: ghcr.io
+  OWNER: kristianstad
 
 jobs:
   build-and-push-image:
@@ -32,12 +37,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lowercase repository owner
-        id: lowercase
-        run: |
-          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-          echo "owner_lc=${OWNER_LC}" >> $GITHUB_OUTPUT
-
       - name: Determine versions
         id: version
         run: |
@@ -45,16 +44,16 @@ jobs:
           APP_VER=${{ inputs.app_version || github.ref_name }}
           echo "alpine_version=${ALPINE_VER}" >> $GITHUB_OUTPUT
           echo "app_version=${APP_VER}" >> $GITHUB_OUTPUT
-          echo "Building with Alpine ${ALPINE_VER} + App version ${APP_VER}"
+          echo "Building ${IMAGE_NAME} ${APP_VER} on Alpine ${ALPINE_VER}"
 
       - name: Extract metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ${{ env.REGISTRY }}/${{ steps.lowercase.outputs.owner_lc }}/secure_and_minimal
+          images: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ inputs.image_name }}
           tags: |
-            type=raw,value=pgbouncer-${{ steps.version.outputs.app_version }}
-            type=raw,value=pgbouncer-latest,enable={{ is_default_branch }}
+            type=raw,value=${{ steps.version.outputs.app_version }}
+            type=raw,value=latest,enable={{ is_default_branch }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
@@ -70,7 +69,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            SaM_REPO=${{ env.REGISTRY }}/${{ steps.lowercase.outputs.owner_lc }}/secure_and_minimal
+            SaM_REPO=${{ env.REGISTRY }}/${{ env.OWNER }}/secure_and_minimal
             ALPINE_VERSION=${{ steps.version.outputs.alpine_version }}
             APP_VERSION=${{ steps.version.outputs.app_version }}
           cache-from: type=gha
