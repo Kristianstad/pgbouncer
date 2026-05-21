@@ -33,6 +33,10 @@ COPY --from=build /finalfs /
 # =========================================================================
 # Final
 # =========================================================================
+# Re-deklarera ARG för att undvika varningar
+ARG ALPINE_VERSION
+ARG APP_VERSION
+
 ARG CONFIG_DIR="/etc/pgbouncer"
 
 ENV VAR_LINUX_USER="postgres" \
