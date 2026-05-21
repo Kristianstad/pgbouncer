@@ -33,7 +33,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 # Final
 # =========================================================================
-# Re-deklarera ARG för att undvika varningar
+# Re-declare ARGs
 ARG ALPINE_VERSION
 ARG APP_VERSION
 
@@ -57,4 +57,4 @@ ONBUILD USER root
 
 LABEL org.opencontainers.image.version="${APP_VERSION}" \
       org.opencontainers.image.title="pgbouncer" \
-      org.opencontainers.image.description="PgBouncer ${APP_VERSION} on Alpine ${ALPINE_VERSION}"
+      org.opencontainers.image.description="PgBouncer ${APP_VERSION} based on secure_and_minimal ${ALPINE_VERSION}"
