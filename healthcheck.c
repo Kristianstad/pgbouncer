@@ -14,6 +14,8 @@ int main(int argc, char **argv) {
     } else if (argc > 1) {
         host = argv[1];
     }
+    if ((p = getenv("VAR_param_listen_port")) != NULL)
+        port = atoi(p);
     if (port <= 0 || port > 65535)
         return 1;
     in_addr_t addr = htonl(INADDR_LOOPBACK);
