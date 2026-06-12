@@ -6,7 +6,7 @@
 #include <signal.h>
 int main(int argc, char **argv) {
     const char *host = NULL;
-    int port = 0;
+    int port = 6432;
     const char *p;
     if (argc > 2) {
         host = argv[1];
@@ -14,10 +14,6 @@ int main(int argc, char **argv) {
     } else if (argc > 1) {
         host = argv[1];
     }
-    if (port <= 0 && (p = getenv("VAR_LISTEN_PORT")) != NULL)
-        port = atoi(p);
-    if (port <= 0 && (p = getenv("VAR_PORT")) != NULL)
-        port = atoi(p);
     if (port <= 0 || port > 65535)
         return 1;
     in_addr_t addr = htonl(INADDR_LOOPBACK);
