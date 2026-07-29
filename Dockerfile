@@ -11,7 +11,8 @@ ARG BUILDCMDS=\
 "&& strip --strip-all /tmp/healthcheck "\
 "&& chmod ugo+rx-w /tmp/healthcheck "\
 "&& cp -a /tmp/healthcheck /finalfs/usr/local/bin/"
-ARG RUNDEPS="pgbouncer"
+ARG RUNDEPS="pgbouncer postgresql18-client"
+# postgresql18-client isn't needed but is useful for connecting to the pgbouncer admin db
 ARG EXECUTABLES="/usr/bin/pgbouncer"
 ARG REMOVEFILES="/etc/pgbouncer/pgbouncer.ini"
 # ARGs (can be passed to Build/Final) </END>
