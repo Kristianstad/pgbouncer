@@ -8,7 +8,7 @@ ARG APP_VERSION=${APP_VERSION:-1.25.1}
 ARG IMAGETYPE="application"
 ARG BUILDDEPS="openssl-dev"
 ARG BUILDCMDS=\
-"   gcc -O2 -o /tmp/healthcheck /tmp/healthcheck.c -lssl -lcrypto"\
+"   gcc -O2 -o /tmp/healthcheck /tmp/healthcheck.c -lssl -lcrypto "\
 "&& strip --strip-all /tmp/healthcheck "\
 "&& chmod ugo+rx-w /tmp/healthcheck "\
 "&& cp -a /tmp/healthcheck /finalfs/usr/local/bin/"
